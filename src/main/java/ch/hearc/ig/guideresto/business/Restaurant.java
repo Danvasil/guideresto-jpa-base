@@ -1,18 +1,39 @@
 package ch.hearc.ig.guideresto.business;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
+@Table(name="RESTAURANTS")
 public class Restaurant implements IAmRestaurant {
 
+    @Id
+    @Basic(optional = false)
+    @Column(name = "NUMERO")
     private Integer id;
+
+    @Column(name="NOM")
     private String name;
-    private String description;
-    private String website;
-    private Set<Evaluation> evaluations;
+
+    @Embedded
     private Localisation address;
+
+    @Column (name="DESCRIPTION")
+    private String description;
+
+    @Column(name="SITE_WEB")
+    private String website;
+
+    @OneToMany
+    @JoinColumn(name="FK_REST")
+    private Set<Evaluation> evaluations;
+
+    @ManyToOne
+    @JoinColumn(name="FK_TYPE")
     private RestaurantType type;
+
 
     public Restaurant(Integer id, String name, String description, String website, String street, City city, RestaurantType type) {
         this.id = id;
@@ -23,6 +44,8 @@ public class Restaurant implements IAmRestaurant {
         this.address = new Localisation(street, city);
         this.type = type;
     }
+
+    public Restaurant() {}
 
     public String getName() {
         return name;

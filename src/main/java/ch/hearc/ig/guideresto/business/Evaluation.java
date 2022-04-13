@@ -1,13 +1,23 @@
 package ch.hearc.ig.guideresto.business;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Evaluation {
 
+  @Id
+  @Column(name="NUMERO")
   private Integer id;
+
+  @Column(name="DATE_EVAL")
   private LocalDate visitDate;
+
+  @ManyToOne
+  @JoinColumn(name="FK_REST")
   private Restaurant restaurant;
 
   public Evaluation(Integer id, LocalDate visitDate, Restaurant restaurant) {
@@ -15,6 +25,8 @@ public abstract class Evaluation {
     this.visitDate = visitDate;
     this.restaurant = restaurant;
   }
+
+  public Evaluation() {}
 
   public LocalDate getVisitDate() {
     return visitDate;
