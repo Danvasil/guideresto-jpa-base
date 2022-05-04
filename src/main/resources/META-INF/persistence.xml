@@ -10,11 +10,11 @@
         value="oracle.jdbc.OracleDriver"/>
       <!-- URL de la base de données de l'école !-->
       <property name="javax.persistence.jdbc.url"
-        value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        value="jdbc:oracle:thin:@db.ig.he-arc.ch:1521:ens"/>
       <!-- Votre nom d'utilisateur !-->
-      <property name="javax.persistence.jdbc.user" value="system"/>
+      <property name="javax.persistence.jdbc.user" value="fanny_roulin"/>
       <!-- Votre mot de passe !-->
-      <property name="javax.persistence.jdbc.password" value="oracle"/>
+      <property name="javax.persistence.jdbc.password" value="fanny_roulin"/>
       <!-- Dialect de la base de données à utiliser -->
       <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
       <!-- Logs des  requêtes SQL -->
